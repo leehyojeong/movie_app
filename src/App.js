@@ -1,32 +1,33 @@
 import React from 'react';
 
-function Food({fav, picture}) {
-  return <div>
-    <h2>I like {fav}</h2>
-    <img src={picture}/>
-  </div>;
-}
-
-const foodIlike = [
-  {
-    id: 1,
-    name: "kim",
-    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.RSRN70ESBp8mYHmq8Q8znQHaDt%26pid%3DApi&f=1"
-  },
-  {
-    id: 2,
-    name: "don",
-    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.2bPqskIIDjez0ZuvbApLjAHaEK%26pid%3DApi&f=1"
+class App extends React.Component {
+  state = {
+    count: 0
+  };
+  add = ()=>{
+    // console.log("add");
+    this.setState(current => ({count: current.count + 1}));
+  };
+  minus = ()=>{
+    // console.log("minus");
+    this.setState(current => ({count: current.count - 1}));
+  };
+  componentDidMount(){
+    console.log("component rendered");
   }
-]
-function App() {
-  return (
-  <div>
-    {foodIlike.map((dish, idx)=>(
-      <Food fav={dish.name} picture={dish.image} key={idx}/>
-    ))}
-  </div>
-  );
+  componentDidUpdate(){
+    console.log("just updated");
+  }
+  render(){
+    console.log("rendering");
+    return (
+      <div>
+        <h1>The number is {this.state.count}</h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    );
+  }
 }
 
 export default App;
